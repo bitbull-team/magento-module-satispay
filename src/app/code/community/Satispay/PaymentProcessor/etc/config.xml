@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Satispay_PaymentProcessor>
+            <version>0.0.1</version>
+        </Satispay_PaymentProcessor>
+    </modules>
+    <global>
+        <blocks>
+            <satispay>
+                <class>Satispay_PaymentProcessor_Block</class>
+            </satispay>
+        </blocks>
+        <helpers>
+            <satispay>
+                <class>Satispay_PaymentProcessor_Helper</class>
+            </satispay>
+        </helpers>
+        <models>
+            <satispay>
+                <class>Satispay_PaymentProcessor_Model</class>
+            </satispay>
+        </models>
+    </global>
+    <frontend>
+        <routers>
+            <satispay>
+                <use>standard</use>
+                <args>
+                    <module>Satispay_PaymentProcessor</module>
+                    <frontName>satispay</frontName>
+                </args>
+            </satispay>
+        </routers>
+    </frontend>
+    <default>
+        <payment>
+            <satispay>
+                <title>Pay with Satispay</title>
+                <order_status>pending_payment</order_status>
+                <payment_action>sale</payment_action>
+                <model>satispay/payment</model>
+            </satispay>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,5 @@
+<?php echo $this->getTitle() ?>
+<?php if($this->getInfo() && ($transactionId = $this->getInfo()->getLastTransId())): ?>
+    <br />
+    <?php echo $this->__('Transaction ID: %s', $transactionId) ?>
+<?php endif; ?>

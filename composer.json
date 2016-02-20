@@ -1,0 +1,15 @@
+{
+    "name": "Satispay/PaymentProcessor",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Magento module for Satispay Payment integration",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors":[
+        {
+            "name":"Bitbull",
+            "email":"info@bitbull.it"
+        }
+    ]
+}

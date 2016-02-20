@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Satispay_PaymentProcessor>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends></depends>
+        </Satispay_PaymentProcessor>
+    </modules>
+</config>

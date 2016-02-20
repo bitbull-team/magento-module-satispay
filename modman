@@ -1,0 +1,5 @@
+src/app/code/community/Satispay/PaymentProcessor        app/code/community/Satispay/PaymentProcessor
+src/app/design/frontend/base/default/template/satispay  app/design/frontend/base/default/template/satispay
+src/app/design/adminhtml/base/default/template/satispay app/design/adminhtml/base/default/template/satispay
+src/lib/Satispay/Core lib/Satispay/Core
+src/app/etc/modules/* app/etc/modules/
