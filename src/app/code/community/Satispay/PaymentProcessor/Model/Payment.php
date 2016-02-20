@@ -7,6 +7,8 @@ class Satispay_PaymentProcessor_Model_Payment extends Mage_Payment_Model_Method_
     protected $_infoBlockType = 'satispay/payment_info';
     protected $_isInitializeNeeded      = true;
     protected $_canUseInternal          = false;
+    protected $_canRefund               = true;
+    protected $_canRefundInvoicePartial = true;
     
     /**
      * Whether current operation is order placement
@@ -137,5 +139,44 @@ class Satispay_PaymentProcessor_Model_Payment extends Mage_Payment_Model_Method_
         return Mage::getUrl('satispay/payment/index', array(
             '_secure'=>true
         ));
+    }
+    
+    /**
+     * Refund specified amount
+     *
+     * @param Varien_Object $payment
+     * @param float $amount
+     *
+     * @return Satispay_PaymentProcessor_Model_Payment
+     */
+    public function refund(Varien_Object $payment, $amount)
+    {
+        $chargeId = $payment->getLastTransId();
+        if($chargeId) {
+            
+            $helper = Mage::helper('satispay');
+            $client = $helper->getClient();
+            
+            $helper->getLogger()->info('Issuing a refund for charge ' . $chargeId);
+            $refund = $client->refundCreate(
+                $chargeId,
+                round($amount * 100)
+            );
+            
+            if(!$refund || !isset($refund->uuid)) {
+                $helper->getLogger()->err('Error issuing a refund for charge ' . $chargeId);
+                $helper->getLogger()->err($refund);
+                
+                Mage::throwException(($refund && isset($refund->message)) ? $refund->message : 'Invalid server response');
+            }
+            
+            $helper->getLogger()->info('Refund issued successfully');
+            $helper->getLogger()->info($refund);
+
+        } else {
+            Mage::throwException('Charge ID not set for the payment');
+        }
+        
+        return $this;
     }
 }

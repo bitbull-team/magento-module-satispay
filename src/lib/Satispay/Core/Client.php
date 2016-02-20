@@ -126,4 +126,18 @@ class Satispay_Core_Client {
 		// Make request
 	    return $this->getResponse($idempotencyKey, '/online/v1/charges/' . $id);
 	}
+	
+	/**
+	 * Create refund request
+	 * @param string $chargeId
+	 * @param float $amount
+	 */
+	public function refundCreate($chargeId, $amount) {
+		$idempotencyKey = microtime(true);
+		
+	    return $this->getResponse($idempotencyKey, '/online/v1/refunds', array(
+	        'charge_id' => $chargeId,
+	        'amount' => $amount,
+        ));
+	}
 }
