@@ -10,10 +10,10 @@ class Satispay_Core_Client {
     const STAGING_ENDPOINT = 'staging.authservices.satispay.com';
     const STAGING_SECURITY_TOKEN = 'osh_cgml4ekip198n22sef1f05kfa389j9pqnll6hg5nq05ppla1f3b1eitv73o53mqhjdujq4m5kgc0fa0f5nojvisrqmunbk14dutt1qi95qgfstb60glek063beftbmc12htftpkjvchtckj7fi9ep5c56l9d356ev30tlrfubvfiugo44lomgac0hd9rpbf326lsmj06';
     
-    const STATUS_REQUESTED = 'REQUESTED';
-    const STATUS_SUCCEEDED = 'SUCCEEDED';
-    const STATUS_DECLINED = 'DECLINED';
-    const STATUS_FAILED = 'FAILED';
+    const PAYMENT_STATUS_REQUESTED = 'REQUESTED';
+    const PAYMENT_STATUS_SUCCEESS = 'SUCCESS';
+    const PAYMENT_STATUS_DECLINED = 'DECLINED';
+    const PAYMENT_STATUS_FAILURE = 'FAILURE';
     
     protected $_staging;
     protected $_security_token;
@@ -57,6 +57,12 @@ class Satispay_Core_Client {
 		curl_setopt($h, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($h, CURLOPT_CONNECTTIMEOUT, self::HTTP_TIMEOUT);
 		curl_setopt($h, CURLOPT_TIMEOUT, self::HTTP_TIMEOUT);
+
+		// Ignore certificate issues in staging
+		if($this->_staging) {
+			curl_setopt($h, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($h, CURLOPT_SSL_VERIFYPEER, false);
+		}
 
 		// Add headers
 		$headers = array(

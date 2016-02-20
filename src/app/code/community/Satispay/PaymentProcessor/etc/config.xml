@@ -23,6 +23,13 @@
         </models>
     </global>
     <frontend>
+        <layout>
+            <updates>
+                <satispay>
+                    <file>satispay.xml</file>
+                </satispay>
+            </updates>
+        </layout>
         <routers>
             <satispay>
                 <use>standard</use>
@@ -33,6 +40,14 @@
             </satispay>
         </routers>
     </frontend>
+    <crontab>
+		<jobs>
+			<satispay_process_pendingorders>
+				<schedule><cron_expr>*/10 * * * *</cron_expr></schedule>
+				<run><model>satispay/cron::processPendingOrders</model></run>
+			</satispay_process_pendingorders>
+		</jobs>
+	</crontab>
     <default>
         <payment>
             <satispay>

@@ -43,6 +43,21 @@ class Satispay_PaymentProcessor_Model_Payment extends Mage_Payment_Model_Method_
     }
     
     /**
+     * Currency getter
+     *
+     * @return string
+     */
+    private function _getCurrency()
+    {
+        $info = $this->getInfoInstance();
+        if ($this->_isPlaceOrder()) {
+            return $info->getOrder()->getBaseCurrencyCode();
+        } else {
+            return $info->getQuote()->getQuoteBaseCurrencyCode();
+        }
+    }
+    
+    /**
      * Grand total getter
      *
      * @return float
@@ -91,16 +106,20 @@ class Satispay_PaymentProcessor_Model_Payment extends Mage_Payment_Model_Method_
         $currency = $this->_getCurrency();
         $amount = $this->_getAmount();
         
+        $helper = Mage::helper('satispay');
         $helper->getLogger()->info('Payment initialization');
         $helper->getLogger()->info('Order ID: ' . $orderId);
         $helper->getLogger()->info('Currency: ' . $currency);
         $helper->getLogger()->info('Amount: ' . $amount);
         
+        // Clear session to avoid collisions
+        $session = Mage::getSingleton('satispay/session');
+        $session->clear();
+        
         // Store transaction informations in session
-        Mage::getSingleton('satispay/session')
-            ->setOrderId($orderId)
+        $session->setOrderId($orderId)
             ->setCurrency($currency)
-            ->setAmount($amount);
+            ->setAmount(round($amount * 100));
 
         return $this;
     }
@@ -112,7 +131,8 @@ class Satispay_PaymentProcessor_Model_Payment extends Mage_Payment_Model_Method_
      */
     public function getOrderPlaceRedirectUrl()
     {
-        $helper->getLogger()->info('Redirecting customer to payment page');
+        Mage::helper('satispay')->getLogger()
+            ->info('Redirecting customer to payment page');
         
         return Mage::getUrl('satispay/payment/index', array(
             '_secure'=>true
