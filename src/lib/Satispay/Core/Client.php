@@ -130,13 +130,15 @@ class Satispay_Core_Client {
 	/**
 	 * Create refund request
 	 * @param string $chargeId
+	 * @param string $currency
 	 * @param float $amount
 	 */
-	public function refundCreate($chargeId, $amount) {
+	public function refundCreate($chargeId, $currency, $amount) {
 		$idempotencyKey = microtime(true);
 		
 	    return $this->getResponse($idempotencyKey, '/online/v1/refunds', array(
-	        'charge_id' => $chargeId,
+	        'charge_uuid' => $chargeId,
+	        'currency' => $currency,
 	        'amount' => $amount,
         ));
 	}

@@ -160,10 +160,11 @@ class Satispay_PaymentProcessor_Model_Payment extends Mage_Payment_Model_Method_
             $helper->getLogger()->info('Issuing a refund for charge ' . $chargeId);
             $refund = $client->refundCreate(
                 $chargeId,
+                $payment->getOrder()->getBaseCurrencyCode(),
                 round($amount * 100)
             );
             
-            if(!$refund || !isset($refund->uuid)) {
+            if(!$refund || !isset($refund->id)) {
                 $helper->getLogger()->err('Error issuing a refund for charge ' . $chargeId);
                 $helper->getLogger()->err($refund);
                 

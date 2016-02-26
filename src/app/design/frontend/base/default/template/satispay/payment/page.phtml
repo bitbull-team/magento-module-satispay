@@ -1,0 +1,9 @@
+<input type="text" id="phone_number" />
+<input type="submit" id="submit" value="<?php echo $this->__('Send Request') ?>" />
+
+<script type="text/javascript">
+var satispay = new Satispay_Payment(<?php echo Mage::helper('core')->jsonEncode(array(
+    'chargeEndpoint' => Mage::getUrl('satispay/payment/charge_user', array('_secure'=>true)),
+    'statusEndpoint' => Mage::getUrl('satispay/payment/check_status', array('_secure'=>true)),
+)); ?>);    
+</script>
