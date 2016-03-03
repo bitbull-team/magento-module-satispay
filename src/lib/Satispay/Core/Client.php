@@ -102,14 +102,15 @@ class Satispay_Core_Client {
 	/**
 	 * Create charge request
 	 * @param string $orderId
-	 * @param string $userUuid
+	 * @param string $userId
 	 * @param string $currency
 	 * @param float $amount
 	 */
-	public function chargeCreate($orderId, $userUuid, $currency, $amount) {
+	public function chargeCreate($orderId, $userId, $currency, $amount) {
 		// Using order id as idempotency key, in order to avoid multiple charges for same order
 	    return $this->getResponse($orderId, '/online/v1/charges', array(
-	        'user_uuid' => $userUuid,
+	        'user_id' => $userId,
+	        'order_id' => $orderId,
 	        'currency' => $currency,
 	        'amount' => $amount,
         ));
@@ -137,7 +138,7 @@ class Satispay_Core_Client {
 		$idempotencyKey = microtime(true);
 		
 	    return $this->getResponse($idempotencyKey, '/online/v1/refunds', array(
-	        'charge_uuid' => $chargeId,
+	        'charge_id' => $chargeId,
 	        'currency' => $currency,
 	        'amount' => $amount,
         ));

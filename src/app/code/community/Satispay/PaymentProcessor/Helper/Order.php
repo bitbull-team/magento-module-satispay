@@ -25,7 +25,7 @@ class Satispay_PaymentProcessor_Helper_Order extends Mage_Core_Helper_Abstract
         $charge = $helper->getClient()
             ->chargeGet($chargeId);
         
-        if(!$charge || !isset($charge->uuid)) {
+        if(!$charge || !isset($charge->id)) {
             $helper->getLogger()->err('Invalid server response for charge #' . $chargeId);
             $helper->getLogger()->err($charge);
             

@@ -1,0 +1,44 @@
+.satispay-container {
+    background-color: #F7F7F7;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 15px;
+    text-align: center;
+}
+
+.satispay-container .satispay-logo {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.satispay-container .phone-selection select {
+    position: absolute;
+    width: 5%;
+    height: 30px;
+    border: 1px solid black;
+}
+
+.satispay-container .phone-selection input {
+    width: 82%;
+    margin-left: 18%;
+}
+
+.satispay-container .errors {
+    color: #F94C43;
+    font-weight: bold;
+    padding: 15px;
+}
+.satispay-container .success {
+    font-weight: bold;
+    padding: 15px;
+}
+
+.satispay-container #submit {
+    border: 0px solid #F94C43;
+    background-color: #F94C43;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+}

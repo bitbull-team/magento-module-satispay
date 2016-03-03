@@ -9,6 +9,7 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
         <reference name="head">
+            <action method="addItem"><type>skin_css</type><file>satispay/css/payment.css</file></action>
             <action method="addItem"><type>skin_js</type><file>satispay/js/payment.js</file></action>
         </reference>
         <reference name="content">

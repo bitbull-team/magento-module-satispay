@@ -62,7 +62,7 @@ class Satispay_PaymentProcessor_PaymentController extends Mage_Core_Controller_F
         $user = $client->userCreate($phoneNumber);
         
         // Check user creation response
-        if(!isset($user->uuid)) {
+        if(!isset($user->id)) {
             
             $helper->getLogger()->err('Error in user creation');
             $helper->getLogger()->err($user);
@@ -76,13 +76,13 @@ class Satispay_PaymentProcessor_PaymentController extends Mage_Core_Controller_F
         // Create charge
         $charge = $client->chargeCreate(
             $session->getOrderId(),
-            $user->uuid,
+            $user->id,
             $session->getCurrency(),
             $session->getAmount()
         );
         
         // Check user creation response
-        if(!isset($charge->uuid)) {
+        if(!isset($charge->id)) {
             
             $helper->getLogger()->err('Error in charge request creation');
             $helper->getLogger()->err($charge);
@@ -97,14 +97,14 @@ class Satispay_PaymentProcessor_PaymentController extends Mage_Core_Controller_F
         $helper->getLogger()->info($charge);
         
         // Update session
-        $session->setChargeId($charge->uuid);
+        $session->setChargeId($charge->id);
         
         // Update order payment informations
         $order = Mage::getModel('sales/order')
             ->load($session->getOrderId(), 'increment_id');
         
         $order->getPayment()
-            ->setLastTransId($charge->uuid)
+            ->setLastTransId($charge->id)
             ->save();
         
         return $this->renderAjaxResponse(array(

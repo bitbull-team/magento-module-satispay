@@ -1,9 +1,17 @@
 var Satispay_Payment = function(options) {
     var self = this;
-    var interval = 5000;
+    var interval = 4000;
     
     this.renderError = function(message) {
-        alert(message);
+        jQuery('.satispay-container .errors').html(message).fadeIn();
+    };
+    this.hideError = function() {
+        jQuery('.satispay-container .errors').fadeOut();
+    };
+    this.renderSuccess = function() {
+        jQuery('.satispay-container .instructions, .satispay-container .phone-selection, .satispay-container #submit').fadeOut(function() {
+            jQuery('.satispay-container .success').fadeIn();
+        });
     };
     
     this.checkStatus = function() {
@@ -18,13 +26,15 @@ var Satispay_Payment = function(options) {
     };
     
     jQuery('#submit').click(function() {
-        var phoneNumber = jQuery('#phone_number').val();
+        self.hideError();
+        var phoneNumber = jQuery('#country-code').val() + jQuery('#phone-number').val();
         jQuery.post(options.chargeEndpoint, { phone_number: phoneNumber }, function(data) {
             if(!data.success) {
                 self.renderError(data.message);
                 return;
             }
             
+            self.renderSuccess();
             setTimeout(self.checkStatus, interval);
         }).fail(function(response) {
             if(!response.responseJSON.message) {
