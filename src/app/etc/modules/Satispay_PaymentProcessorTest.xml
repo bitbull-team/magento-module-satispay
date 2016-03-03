@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Satispay_PaymentProcessorTest>
+            <active>false</active>
+            <codePool>community</codePool>
+            <depends>
+                <Satispay_PaymentProcessor />
+                <EcomDev_PHPUnit />
+            </depends>
+        </Satispay_PaymentProcessorTest>
+    </modules>
+</config>

@@ -1,4 +1,5 @@
 src/app/code/community/Satispay/PaymentProcessor         app/code/community/Satispay/PaymentProcessor/
+src/app/code/community/Satispay/PaymentProcessorTest     app/code/community/Satispay/PaymentProcessorTest
 src/app/design/frontend/base/default/layout/satispay.xml app/design/frontend/base/default/layout/
 src/app/design/frontend/base/default/template/satispay   app/design/frontend/base/default/template/satispay/
 src/skin/frontend/base/default/satispay                  skin/frontend/base/default/satispay/
