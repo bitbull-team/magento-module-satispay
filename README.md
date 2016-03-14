@@ -21,7 +21,7 @@ Here are the guidelines we followed during the development of the module.
 * The group name is **satispay**
 * The module can be installed via **composer** or **modman**; composer uses modman file to know which files to install 
   and where to put them, so the modman file should be always kept up to date
-* To **log messages** a specific model is provided: `Satispay_PaymentProcessor_Model_Logger`; it can be instanced by using 
+* To **log messages** a specific model is provided: `Bitbull_Satispay_Model_Logger`; it can be instanced by using 
   the default helper this way: `helper('satispay')->getLogger()`; for the list of methods please refer to the model 
   class source code
 * The following annotated comments are used:
@@ -40,10 +40,10 @@ code changes.
 * Add basic system configuration flags and corresponding helper methods 
 
 ### v 0.1.2
-* Add missing comments in Satispay_PaymentProcessor_Model_Logger
+* Add missing comments in Bitbull_Satispay_Model_Logger
 
 ### v 0.1.1
-* Add missing getter in Satispay_PaymentProcessor_Helper_Data
+* Add missing getter in Bitbull_Satispay_Helper_Data
 
 ### v 0.1.0
 * First commit and module structure

@@ -1,9 +1,0 @@
-<config>
-    <phpunit>
-        <suite>
-            <modules>
-                <Satispay_PaymentProcessorTest />
-            </modules>
-        </suite>
-    </phpunit>
-</config>

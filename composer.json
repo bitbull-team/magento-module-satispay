@@ -1,5 +1,5 @@
 {
-    "name": "Satispay/PaymentProcessor",
+    "name": "Bitbull/Satispay",
     "license": "OSL-3.0",
     "type": "magento-module",
     "description": "Magento module for Satispay Payment integration",
