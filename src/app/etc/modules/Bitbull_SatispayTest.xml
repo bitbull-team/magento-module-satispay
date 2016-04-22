@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bitbull_SatispayTest>
+            <active>false</active>
+            <codePool>community</codePool>
+            <depends>
+                <Bitbull_Satispay />
+                <EcomDev_PHPUnit />
+            </depends>
+        </Bitbull_SatispayTest>
+    </modules>
+</config>

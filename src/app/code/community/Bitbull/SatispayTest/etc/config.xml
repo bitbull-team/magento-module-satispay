@@ -1,0 +1,9 @@
+<config>
+    <phpunit>
+        <suite>
+            <modules>
+                <Bitbull_SatispayTest />
+            </modules>
+        </suite>
+    </phpunit>
+</config>

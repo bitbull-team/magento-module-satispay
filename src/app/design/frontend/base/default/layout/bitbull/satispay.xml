@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <satispay_payment_index translate="label">
+        <label>Satispay Payment Page</label>
+        <remove name="right"/>
+        <remove name="left"/>
+        
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><file>bitbull/satispay/css/payment.css</file></action>
+            <action method="addItem"><type>skin_js</type><file>bitbull/satispay/js/payment.js</file></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="satispay.payment.page" template="bitbull/satispay/payment/page.phtml" />
+        </reference>
+    </satispay_payment_index>
+</layout>

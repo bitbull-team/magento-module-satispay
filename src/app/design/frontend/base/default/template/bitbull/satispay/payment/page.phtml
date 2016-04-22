@@ -1,0 +1,26 @@
+<?php $defaultCountryCode = Mage::helper('satispay')->getDefaultCountryCode(); ?>
+<?php $countryCodes = Mage::helper('satispay/phone')->getCountryCodes(); ?>
+<div class="satispay-container">
+    <img class="satispay-logo" src="<?php echo $this->getSkinUrl('bitbull/satispay/images/satispay_logo.png') ?>" alt="<?php echo $this->__('Satispay') ?>" />
+    <p class="instructions"><?php echo $this->__('Please enter the Satispay number you want to charge for the order.') ?></p>
+    <div class="phone-selection">
+        <select id="country-code">
+            <?php foreach($countryCodes as $countryCode): ?>
+                <option <?php if($countryCode == $defaultCountryCode) echo 'selected="selected"' ?>><?php echo $countryCode ?></option>
+            <?php endforeach; ?>
+        </select>
+        <input type="text" id="phone-number" />
+    </div>
+    <div class="errors" style="display:none"></div>
+    <div class="success" style="display:none">
+        <?php echo $this->__('Request successfully sent. Please confirm the payment from the mobile Satispay application.') ?>
+    </div>
+    <input type="submit" id="submit" value="<?php echo $this->__('Send Request') ?>" />
+</div>
+
+<script type="text/javascript">
+var satispay = new Satispay_Payment(<?php echo Mage::helper('core')->jsonEncode(array(
+    'chargeEndpoint' => Mage::getUrl('satispay/payment/charge_user', array('_secure'=>true)),
+    'statusEndpoint' => Mage::getUrl('satispay/payment/check_status', array('_secure'=>true)),
+)); ?>);    
+</script>

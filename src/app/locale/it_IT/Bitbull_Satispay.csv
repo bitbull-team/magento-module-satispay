@@ -1,0 +1,6 @@
+"Transaction ID: %s","ID Transazione: %s"
+"Please enter the Satispay number you want to charge for the order.","Inserisci il numero Satispay per inviare una richiesta di addebito."
+"Send Request","Invia Richiesta"
+"Invalid session. Please try placing the order again.","Sessione scaduta. Ripetere l'ordine."
+"Phone number is a required field","Il numero di telefono è un campo richiesto"
+"Request successfully sent. Please confirm the payment from the mobile Satispay application.","Richiesta inviata con successo. Utilizzare l'app Satispay per confermare il pagamento."
