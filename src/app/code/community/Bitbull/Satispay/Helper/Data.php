@@ -14,6 +14,9 @@ class Bitbull_Satispay_Helper_Data extends Mage_Core_Helper_Abstract
 
     /** @var  Bitbull_Satispay_Model_Logger */
     protected $_logger;
+    
+    /** @var array */
+    protected $_supportedCurrencyCodes = array('EUR');
 
     public function __construct()
     {
@@ -59,6 +62,17 @@ class Bitbull_Satispay_Helper_Data extends Mage_Core_Helper_Abstract
         
         return $client->setStaging($this->getStaging())
             ->setSecurityToken($this->getSecurityToken());
+    }
+    
+    /**
+     * Check whether specified currency code is supported or not
+     *
+     * @param string $code
+     * @return bool
+     */
+    public function isCurrencyCodeSupported($code)
+    {
+        return in_array($code, $this->_supportedCurrencyCodes);
     }
 
     /**

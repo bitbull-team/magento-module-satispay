@@ -75,6 +75,17 @@ class Bitbull_Satispay_Model_Payment extends Mage_Payment_Model_Method_Abstract
     }
     
     /**
+     * Whether method is available for specified currency
+     *
+     * @param string $currencyCode
+     * @return bool
+     */
+    public function canUseForCurrency($currencyCode)
+    {
+        return Mage::helper('satispay')->isCurrencyCodeSupported($currencyCode);
+    }
+    
+    /**
      * Validate payment method information object
      *
      * @return Bitbull_Satispay_Model_Payment
