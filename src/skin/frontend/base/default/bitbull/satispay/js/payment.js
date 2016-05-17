@@ -25,7 +25,7 @@ var Satispay_Payment = function(options) {
         });
     };
     
-    jQuery('#submit').click(function() {
+    this.submit = function() {
         self.hideError();
         var phoneNumber = jQuery('#country-code').val() + jQuery('#phone-number').val();
         jQuery.post(options.chargeEndpoint, { phone_number: phoneNumber }, function(data) {
@@ -43,5 +43,12 @@ var Satispay_Payment = function(options) {
             
             self.renderError(response.responseJSON.message);
         });
+    };
+    
+    jQuery('#submit').click(this.submit);
+    jQuery('#phone-number').keypress(function(e) {
+       if(e.keyCode == 13) {
+           self.submit();
+       } 
     });
 }
