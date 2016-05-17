@@ -1,5 +1,5 @@
-<?php $defaultCountryCode = Mage::helper('satispay')->getDefaultCountryCode(); ?>
-<?php $countryCodes = Mage::helper('satispay/phone')->getCountryCodes(); ?>
+<?php $defaultCountryCode = $this->getDefaultCountryCode(); ?>
+<?php $countryCodes = $this->getCountryCodes(); ?>
 <div class="satispay-container">
     <img class="satispay-logo" src="<?php echo $this->getSkinUrl('bitbull/satispay/images/satispay_logo.png') ?>" alt="<?php echo $this->__('Satispay') ?>" />
     <p class="instructions"><?php echo $this->__('Please enter the Satispay number you want to charge for the order.') ?></p>
@@ -9,7 +9,7 @@
                 <option <?php if($countryCode == $defaultCountryCode) echo 'selected="selected"' ?>><?php echo $countryCode ?></option>
             <?php endforeach; ?>
         </select>
-        <input type="text" id="phone-number" />
+        <input type="text" id="phone-number" value="<?php echo $this->escapeHtml($this->getPhoneNumber()) ?>" />
     </div>
     <div class="errors" style="display:none"></div>
     <div class="success" style="display:none">

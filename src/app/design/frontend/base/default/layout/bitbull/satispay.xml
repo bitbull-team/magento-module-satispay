@@ -13,7 +13,7 @@
             <action method="addItem"><type>skin_js</type><file>bitbull/satispay/js/payment.js</file></action>
         </reference>
         <reference name="content">
-            <block type="core/template" name="satispay.payment.page" template="bitbull/satispay/payment/page.phtml" />
+            <block type="satispay/payment_page" name="satispay.payment.page" template="bitbull/satispay/payment/page.phtml" />
         </reference>
     </satispay_payment_index>
 </layout>
