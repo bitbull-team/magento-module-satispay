@@ -3,17 +3,55 @@ Magento module for Satispay integration.
 
 Based on official Satispay documentation v. 1.0, 2016/02/15
 
+http://bit.ly/API-online
+
 ## System requirements
-@todo
+This extension supports the following versions of Magento:
+
+*	Community Edition (CE) version 1.9.x
+
+*	Enterprise Edition (EE) version 1.14.x
+
+Cron jobs need to be configured in the Magento installation, otherwise orders will remain in *Pending Payment* status. This is because the transaction status check is scheduled to happen every 10 minutes as part of a cron job.
 
 ## Installation
-@todo
+### Using Composer
+To install *Bitbull_Satispay* module via Composer you need to add this repository to your project's *composer.json* file:
+```
+  "repositories":[
+    {"type": "vcs", "url": "git@github.com:bitbull-team/magento-module-satispay.git"}
+  ]
+```
+
+Once done, you will be able to add it to the requirements:
+```
+  "require":{
+    "bitbull/satispay":"*"
+  },
+```
+
+With this configuration, the last version of the extension will be installed running `composer install` or `composer update`.
+
+### Using Modman
+`modman clone https://github.com/bitbull-team/magento-module-satispay.git`
+
+### Zip Download
+Finally, you can install the extension by downloading the archive package, extract it and copy the content of the *src* folder over your Magento root directory.
 
 ## Configuration
-@todo
+After installing the extension login to your shop's admin area and perform the following steps to enable the extension:
+* Refresh the cache (if enabled)
+* Go to **System** > **Configuration** > **Payment Methods** > ** Bitbull Satispay Integration**
+* Set *Enabled* to *Yes*
+* Past your *Security Token* in the dedicated field
+* Press *Save*
 
-## Usage examples
-@todo
+From the same section you can also personalise the payment method title (what the customer sees in the payment method list), the instruction (what appears when the payment method is selected), the default phone country code and wether to activate the *Test Mode* or debug informations in the logs.
+
+## Usage Examples
+After activating the extension you can simply add a product to cart and proceed to checkout.
+Satispay will be displayed between the payment method options and, if selected, you will be redirected to a page where you will be able to specify the mobile number you want to charge for the order. A notification will appear in the customer's app, asking to confirm the payment.
+Mind that the extension will only appear if it's enabled and the website currency is **EUR**. Other currencies are not supported by Satispay at the moment.
 
 ## Development guidelines
 Here are the guidelines we followed during the development of the module.
@@ -47,3 +85,7 @@ code changes.
 
 ### v 0.1.0
 * First commit and module structure
+
+## Testing
+This package contains unit tests that can be executed enabling the extension *Bitbull_SatispayTest*.
+[EcomDev_PHPUnit](https://github.com/EcomDev/EcomDev_PHPUnit) is a dependency, for more details about how to configure the environment refer to the [official guide](https://github.com/EcomDev/EcomDev_LayoutCompiler/blob/master/docs/INSTALLATION.md).
