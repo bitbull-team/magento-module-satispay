@@ -8,9 +8,9 @@ http://bit.ly/API-online
 ## System requirements
 This extension supports the following versions of Magento:
 
-*	Community Edition (CE) version 1.9.x
+*	Community Edition (CE) version 1.7.x, 1.8.x, 1.9.x
 
-*	Enterprise Edition (EE) version 1.14.x
+*	Enterprise Edition (EE) version 1.12.x, 1.13.x, 1.14.x
 
 Cron jobs need to be configured in the Magento installation, otherwise orders will remain in *Pending Payment* status. This is because the transaction status check is scheduled to happen every 10 minutes as part of a cron job.
 
@@ -73,6 +73,9 @@ The extension uses [semantic versioning v 2.0.0](http://semver.org/) convention.
 
 Note: you can use the **{break}.{feature}.{fix}** formula to easily remember which number has to be changed after some
 code changes.
+
+### v 0.2.1
+* Add support for Magento versions 1.7.x and 1.8.x
 
 ### v 0.2.0
 * Add basic system configuration flags and corresponding helper methods 
