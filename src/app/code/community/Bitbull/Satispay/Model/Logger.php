@@ -36,7 +36,11 @@ class Bitbull_Satispay_Model_Logger extends Mage_Core_Model_Abstract
             $force = $this->_force;
         }
 
-        return $this->_logger->log($message, $level, $this->_filename, $force);
+        if($this->_logger) {
+            return $this->_logger->log($message, $level, $this->_filename, $force);
+        } else {
+            return Mage::log($message, $level, $this->_filename, $force);
+        }
     }
 
     /**
