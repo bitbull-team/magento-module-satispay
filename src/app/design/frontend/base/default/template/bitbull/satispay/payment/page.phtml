@@ -19,8 +19,22 @@
 </div>
 
 <script type="text/javascript">
-var satispay = new Satispay_Payment(<?php echo Mage::helper('core')->jsonEncode(array(
-    'chargeEndpoint' => Mage::getUrl('satispay/payment/charge_user', array('_secure'=>true)),
-    'statusEndpoint' => Mage::getUrl('satispay/payment/check_status', array('_secure'=>true)),
-)); ?>);    
+initSatispay = function()
+{
+    var satispay = new Satispay_Payment(<?php echo Mage::helper('core')->jsonEncode(array(
+        'chargeEndpoint' => Mage::getUrl('satispay/payment/charge_user', array('_secure'=>true)),
+        'statusEndpoint' => Mage::getUrl('satispay/payment/check_status', array('_secure'=>true)),
+    )); ?>);
+}
+
+if(typeof jQuery == 'undefined') {
+    var headTag = document.getElementsByTagName("head")[0];
+    var jQueryTag = document.createElement('script');
+    jQueryTag.type = 'text/javascript';
+    jQueryTag.src = '//code.jquery.com/jquery-1.12.4.min.js';
+    jQueryTag.onload = initSatispay;
+    headTag.appendChild(jQueryTag);
+} else {
+    initSatispay();
+}
 </script>
