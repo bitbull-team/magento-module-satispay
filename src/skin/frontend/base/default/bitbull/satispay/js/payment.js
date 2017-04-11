@@ -37,11 +37,11 @@ var Satispay_Payment = function(options) {
             self.renderSuccess();
             setTimeout(self.checkStatus, interval);
         }).fail(function(response) {
-            if(!response.responseJSON.message) {
+            if(!jQuery.parseJSON(response.responseText).message) {
                 return;
             }
             
-            self.renderError(response.responseJSON.message);
+            self.renderError(jQuery.parseJSON(response.responseText).message);
         });
     };
     
