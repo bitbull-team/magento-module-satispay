@@ -64,6 +64,11 @@ class Bitbull_Satispay_Block_Payment_Page extends Mage_Core_Block_Template
     {
         // Try to get the country code from billing telephone
         $telephone = $this->getBillingTelephone();
+        if (substr($telephone, 0, 1) != '+' || substr($telephone, 0, 2) != '00') {
+            //if number doesn't start with a country code, ignore it and 
+            //use the configuration instead
+            $telephone = '';
+        }
         
         if($telephone) {
             $countryCodes = $this->getCountryCodes();
