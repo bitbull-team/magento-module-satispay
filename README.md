@@ -89,6 +89,9 @@ code changes.
 ### v 0.1.0
 * First commit and module structure
 
+## License
+Licensed under the Open Software License version 3.0
+
 ## Testing
 This package contains unit tests that can be executed enabling the extension *Bitbull_SatispayTest*.
 [EcomDev_PHPUnit](https://github.com/EcomDev/EcomDev_PHPUnit) is a dependency, for more details about how to configure the environment refer to the [official guide](https://github.com/EcomDev/EcomDev_LayoutCompiler/blob/master/docs/INSTALLATION.md).
