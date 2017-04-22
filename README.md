@@ -74,6 +74,11 @@ The extension uses [semantic versioning v 2.0.0](http://semver.org/) convention.
 Note: you can use the **{break}.{feature}.{fix}** formula to easily remember which number has to be changed after some
 code changes.
 
+### v 0.2.2
+* [Allow sort order configuration](https://github.com/bitbull-team/magento-module-satispay/issues/1)
+* [Better handling of country code preselection](https://github.com/bitbull-team/magento-module-satispay/issues/3)
+* [Error message display fixes](https://github.com/bitbull-team/magento-module-satispay/issues/4)
+
 ### v 0.2.1
 * Add support for Magento versions 1.7.x and 1.8.x
 
@@ -89,9 +94,18 @@ code changes.
 ### v 0.1.0
 * First commit and module structure
 
-## License
-Licensed under the Open Software License version 3.0
-
 ## Testing
 This package contains unit tests that can be executed enabling the extension *Bitbull_SatispayTest*.
 [EcomDev_PHPUnit](https://github.com/EcomDev/EcomDev_PHPUnit) is a dependency, for more details about how to configure the environment refer to the [official guide](https://github.com/EcomDev/EcomDev_LayoutCompiler/blob/master/docs/INSTALLATION.md).
+
+## Authors, contributors and maintainers
+
+Author:
+- [Renato Cason](https://github.com/renatocason)
+
+Contributions:
+- [Ermanno Baschiera](https://github.com/ebaschiera)
+- For a full list of contributors visit [Magento Module Satispay on GitHub](https://github.com/bitbull-team/magento-module-satispay/graphs/contributors)
+
+## License
+Licensed under the Open Software License version 3.0
