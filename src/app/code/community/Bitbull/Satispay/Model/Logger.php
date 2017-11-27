@@ -1,5 +1,6 @@
 <?php
-class Bitbull_Satispay_Model_Logger extends Mage_Core_Model_Abstract
+
+class Bitbull_Satispay_Model_Logger
 {
     /**
      * Store flag to force logging
