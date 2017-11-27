@@ -15,11 +15,6 @@ class Bitbull_Satispay_Model_Logger
     protected $_filename = 'Bitbull_Satispay.log';
 
     /**
-     * @var Mage_Core_Model_Logger
-     */
-    private $_logger;
-
-    /**
      * Standard constructor.
      */
     public function __construct($parameters)
@@ -27,8 +22,6 @@ class Bitbull_Satispay_Model_Logger
         if (is_bool($parameters)) {
             $this->_force = $parameters;
         }
-
-        $this->_logger = Mage::getModel('core/logger');
     }
 
     protected function _log($message, $level, $force)
@@ -37,11 +30,7 @@ class Bitbull_Satispay_Model_Logger
             $force = $this->_force;
         }
 
-        if($this->_logger) {
-            return $this->_logger->log($message, $level, $this->_filename, $force);
-        } else {
-            return Mage::log($message, $level, $this->_filename, $force);
-        }
+        return Mage::log($message, $level, $this->_filename, $force);
     }
 
     /**
