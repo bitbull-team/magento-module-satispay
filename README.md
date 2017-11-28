@@ -105,6 +105,7 @@ Author:
 
 Contributions:
 - [Ermanno Baschiera](https://github.com/ebaschiera)
+- [azambon](https://github.com/azambon)
 - For a full list of contributors visit [Magento Module Satispay on GitHub](https://github.com/bitbull-team/magento-module-satispay/graphs/contributors)
 
 ## License
