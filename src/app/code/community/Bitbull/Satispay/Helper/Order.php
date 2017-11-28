@@ -64,6 +64,8 @@ class Bitbull_Satispay_Helper_Order extends Mage_Core_Helper_Abstract
     			->addObject($invoice->getOrder());
     
     		$transactionSave->save();
+		
+		Mage::dispatchEvent('satispay_update_success', array('order' => $order, 'charge' => $charge));
 
         } elseif(in_array($charge->status, array(Satispay_Core_Client::PAYMENT_STATUS_DECLINED, Satispay_Core_Client::PAYMENT_STATUS_FAILURE))) {
             $helper->getLogger()->info('Charge in ' . $charge->status . ' status: cancelling order');
@@ -72,8 +74,11 @@ class Bitbull_Satispay_Helper_Order extends Mage_Core_Helper_Abstract
 			$order->addStatusHistoryComment('Charge in ' . $charge->status . ' status.');
 			$order->save();
 			
+	    Mage::dispatchEvent('satispay_update_failure', array('order' => $order, 'charge' => $charge));
         } else {
             $helper->getLogger()->info('No action taken for status ' . $charge->status);
+		
+	    Mage::dispatchEvent('satispay_update_other', array('order' => $order, 'charge' => $charge));
         }
     }
 }
