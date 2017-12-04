@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Bitbull_Satispay>
-            <version>0.2.1</version>
+            <version>0.2.5</version>
         </Bitbull_Satispay>
     </modules>
     <global>
@@ -72,7 +72,6 @@
         <payment>
             <satispay>
                 <title>Pay with Satispay</title>
-                <order_status>pending_payment</order_status>
                 <payment_action>sale</payment_action>
                 <model>satispay/payment</model>
                 <default_country_code>+39</default_country_code>
