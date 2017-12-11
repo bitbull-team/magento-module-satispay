@@ -39,6 +39,8 @@ class Bitbull_Satispay_Helper_Order extends Mage_Core_Helper_Abstract
         // Handle order update depending on payment status
         if($charge->status == Satispay_Core_Client::PAYMENT_STATUS_SUCCEESS) {
             $helper->getLogger()->info('Payment succeeded: invoicing order');
+		
+            Mage::dispatchEvent('satispay_update_success_before', array('order' => $order, 'charge' => $charge));
             
             // Update order status
             $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING);
@@ -65,20 +67,25 @@ class Bitbull_Satispay_Helper_Order extends Mage_Core_Helper_Abstract
     
     		$transactionSave->save();
 		
-		Mage::dispatchEvent('satispay_update_success', array('order' => $order, 'charge' => $charge));
+            Mage::dispatchEvent('satispay_update_success', array('order' => $order, 'charge' => $charge));
 
         } elseif(in_array($charge->status, array(Satispay_Core_Client::PAYMENT_STATUS_DECLINED, Satispay_Core_Client::PAYMENT_STATUS_FAILURE))) {
             $helper->getLogger()->info('Charge in ' . $charge->status . ' status: cancelling order');
+            Mage::dispatchEvent('satispay_update_failure_before', array('order' => $order, 'charge' => $charge));
             
             $order->cancel();
 			$order->addStatusHistoryComment('Charge in ' . $charge->status . ' status.');
 			$order->save();
 			
-	    Mage::dispatchEvent('satispay_update_failure', array('order' => $order, 'charge' => $charge));
+            Mage::dispatchEvent('satispay_update_failure', array('order' => $order, 'charge' => $charge));
         } else {
             $helper->getLogger()->info('No action taken for status ' . $charge->status);
 		
-	    Mage::dispatchEvent('satispay_update_other', array('order' => $order, 'charge' => $charge));
+            //This event is dispatched for consistency with other branches, even though it's basically equivalent to the
+            //satispay_update_other event
+            Mage::dispatchEvent('satispay_update_other_before', array('order' => $order, 'charge' => $charge));
+
+            Mage::dispatchEvent('satispay_update_other', array('order' => $order, 'charge' => $charge));
         }
     }
 }
