@@ -133,6 +133,13 @@ class Bitbull_Satispay_Model_Payment extends Mage_Payment_Model_Method_Abstract
         $session->setOrderId($orderId)
             ->setCurrency($currency)
             ->setAmount(round($amount * 100));
+        
+        $stateObject->setState(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT);
+        
+        //It would be better to ask Magento for the default status of the "pending_payment" state,
+        //but as other parts of the module explicitly check the status against this constant, then
+        //I think it's fine to leave this here.
+        $stateObject->setStatus(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT);
 
         return $this;
     }
